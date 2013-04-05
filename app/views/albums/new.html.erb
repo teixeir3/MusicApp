@@ -1,0 +1,10 @@
+<%= form_for(@album) do |f| %>
+  <%= f.text_field :name %>
+  <br>
+  <%= f.collection_select :band_id, Band.all, :id, :name %>
+  <br>
+  <%= f.number_field :year %>
+  <br>
+
+  <%= f.submit %>
+<% end %>

@@ -1,6 +1,20 @@
 class AlbumsController < ApplicationController
+  def create
+    @album = Album.new(params[:album])
+    
+    if @album.save
+      redirect_to album_url(@album)
+    else
+      render :new
+    end
+  end
+  
   def index
     @albums = Album.all
+  end
+  
+  def new
+    @album = Album.new
   end
   
   def show
