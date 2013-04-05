@@ -1,0 +1,12 @@
+<%= form_for(@track) do |f| %>
+  <%= f.text_field :name %>
+  <br>
+  
+  <%= f.collection_select :album_id, Album.all, :id, :name %>
+  <br>
+  
+  <%= f.number_field :ord %>
+  <br>
+  
+  <%= f.submit %>
+<% end %>
