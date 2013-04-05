@@ -9,4 +9,7 @@
 ActiveRecord::Base.transaction do
   stones = Band.create!(:name => "The Rolling Stones")
   cream = Band.create!(:name => "Cream")
+  
+  stones.albums.create!(:name => "Exile on Main Street", :year => 1972)
+  cream.albums.create!(:name => "Disraeli Gears", :year => 1967)
 end
