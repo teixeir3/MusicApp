@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+ActiveRecord::Base.transaction do
+  stones = Band.create!(:name => "The Rolling Stones")
+  cream = Band.create!(:name => "Cream")
+end
