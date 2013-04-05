@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(:version => 20130405074059) do
 
   create_table "bands", :force => true do |t|
-    t.string   "name"
+    t.string   "name",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
