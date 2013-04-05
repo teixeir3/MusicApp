@@ -10,6 +10,21 @@ ActiveRecord::Base.transaction do
   stones = Band.create!(:name => "The Rolling Stones")
   cream = Band.create!(:name => "Cream")
   
-  stones.albums.create!(:name => "Exile on Main Street", :year => 1972)
-  cream.albums.create!(:name => "Disraeli Gears", :year => 1967)
+  exile_on_main_street = stones.albums.create!(
+    :name => "Exile on Main Street",
+    :year => 1972
+  )
+  disraeli_gears = cream.albums.create!(
+    :name => "Disraeli Gears",
+    :year => 1967
+  )
+  
+  disraeli_gears.tracks.create!(
+    :name => "Strange Brew",
+    :ord  => 1
+  )
+  disraeli_gears.tracks.create!(
+    :name => "Sunshine of Your Love",
+    :ord  => 2
+  )
 end
