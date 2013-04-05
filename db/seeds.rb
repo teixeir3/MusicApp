@@ -12,10 +12,12 @@ ActiveRecord::Base.transaction do
   
   exile_on_main_street = stones.albums.create!(
     :name => "Exile on Main Street",
+    :live => false,
     :year => 1972
   )
   disraeli_gears = cream.albums.create!(
     :name => "Disraeli Gears",
+    :live => false,
     :year => 1967
   )
   
