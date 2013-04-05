@@ -15,6 +15,7 @@ class AlbumsController < ApplicationController
   
   def new
     @album = Album.new
+    @album.band_id = params[:band_id]
   end
   
   def show
