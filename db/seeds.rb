@@ -22,11 +22,15 @@ ActiveRecord::Base.transaction do
   )
   
   disraeli_gears.tracks.create!(
-    :name => "Strange Brew",
-    :ord  => 1
+    :name   => "Strange Brew",
+    :ord    => 1,
+    :bonus  => false,
+    :lyrics => "..."
   )
   disraeli_gears.tracks.create!(
-    :name => "Sunshine of Your Love",
-    :ord  => 2
+    :name   => "Sunshine of Your Love",
+    :ord    => 2,
+    :bonus  => false,
+    :lyrics => "..."
   )
 end

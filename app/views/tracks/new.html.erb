@@ -8,5 +8,16 @@
   <%= f.number_field :ord %>
   <br>
   
+  <%= f.radio_button :bonus, "false" %>
+  <%= f.label :bonus, "Standard", :value => "false" %>
+  <br>
+  <%= f.radio_button :bonus, "true" %>
+  <%= f.label :bonus, "Bonus", :value => "true" %>
+  <br>
+  
+  <%= f.label :lyrics %>
+  <%= f.text_area :lyrics %>
+  <br>
+  
   <%= f.submit %>
 <% end %>
