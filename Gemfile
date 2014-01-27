@@ -13,4 +13,11 @@ end
 gem 'bcrypt-ruby', :require => 'bcrypt'
 
 gem 'jquery-rails'
-gem 'debugger'
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'letter_opener'
+  gem 'debugger'
+end
+
