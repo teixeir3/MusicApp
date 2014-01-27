@@ -21,11 +21,14 @@ class UsersController < ApplicationController
   def activate
     @user = User.find_by_activation_token(params[:activation_token])
 
-    if @user
+    # Check for presence of activation token in params to prevent
+    # fetching a user from the db that has a nil activation_token
+    # for some reason.
+    if params[:activation_token] && @user
       @user.activate!
       redirect_to @user, notice: "Successfully activated your account!"
     else
-      raise ActiveRecord::RecordNotFound.new() unless @user
+      raise ActiveRecord::RecordNotFound.new()
     end
   end
 
