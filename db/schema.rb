@@ -11,15 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130405083457) do
+ActiveRecord::Schema.define(:version => 20131014060258) do
 
   create_table "albums", :force => true do |t|
     t.string   "name",                          :null => false
     t.integer  "band_id",                       :null => false
     t.integer  "year",                          :null => false
+    t.boolean  "live",       :default => false, :null => false
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
-    t.boolean  "live",       :default => false, :null => false
   end
 
   add_index "albums", ["band_id", "name"], :name => "index_albums_on_band_id_and_name"
@@ -33,15 +33,26 @@ ActiveRecord::Schema.define(:version => 20130405083457) do
   add_index "bands", ["name"], :name => "index_bands_on_name", :unique => true
 
   create_table "tracks", :force => true do |t|
-    t.string   "name",       :null => false
-    t.integer  "album_id",   :null => false
-    t.integer  "ord",        :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.boolean  "bonus",      :null => false
-    t.text     "lyrics",     :null => false
+    t.string   "name",                          :null => false
+    t.integer  "album_id",                      :null => false
+    t.integer  "ord",                           :null => false
+    t.boolean  "bonus",      :default => false, :null => false
+    t.text     "lyrics",                        :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   add_index "tracks", ["album_id", "ord"], :name => "index_tracks_on_album_id_and_ord", :unique => true
+
+  create_table "users", :force => true do |t|
+    t.string   "email",           :null => false
+    t.string   "password_digest", :null => false
+    t.string   "session_token",   :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["session_token"], :name => "index_users_on_session_token"
 
 end

@@ -5,32 +5,3 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-
-ActiveRecord::Base.transaction do
-  stones = Band.create!(:name => "The Rolling Stones")
-  cream = Band.create!(:name => "Cream")
-  
-  exile_on_main_street = stones.albums.create!(
-    :name => "Exile on Main Street",
-    :live => false,
-    :year => 1972
-  )
-  disraeli_gears = cream.albums.create!(
-    :name => "Disraeli Gears",
-    :live => false,
-    :year => 1967
-  )
-  
-  disraeli_gears.tracks.create!(
-    :name   => "Strange Brew",
-    :ord    => 1,
-    :bonus  => false,
-    :lyrics => "..."
-  )
-  disraeli_gears.tracks.create!(
-    :name   => "Sunshine of Your Love",
-    :ord    => 2,
-    :bonus  => false,
-    :lyrics => "..."
-  )
-end
