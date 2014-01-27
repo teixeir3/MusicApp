@@ -9,6 +9,11 @@ class SessionsController < ApplicationController
       flash.now[:errors] ||= []
       flash.now << "Login failed. Check yo' self."
       render :new
+
+    # Notice we have User#activated? even though we didn't define it!
+    # Rails gives you this method for free because it matches a column name.
+    elsif !user.activated?
+      redirect_to root_url, alert: "You must activate your account first! Check your email."
     else
       login_user!(user)
       redirect_to user_url(user)
