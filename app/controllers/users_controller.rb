@@ -17,4 +17,16 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
   end
+
+  def activate
+    @user = User.find_by_activation_token(params[:activation_token])
+
+    if @user
+      @user.activate!
+      redirect_to @user, notice: "Successfully activated your account!"
+    else
+      raise ActiveRecord::RecordNotFound.new() unless @user
+    end
+  end
+
 end

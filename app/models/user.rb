@@ -36,4 +36,8 @@ class User < ActiveRecord::Base
     self.session_token = User.generate_session_token
     self.save!
   end
+
+  def activate!
+    self.update_attribute(:activated, true)
+  end
 end
