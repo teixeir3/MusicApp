@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131014060258) do
+ActiveRecord::Schema.define(:version => 20140127204850) do
 
   create_table "albums", :force => true do |t|
     t.string   "name",                          :null => false
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(:version => 20131014060258) do
     t.datetime "updated_at",                    :null => false
   end
 
-  add_index "albums", ["band_id", "name"], :name => "index_albums_on_band_id_and_name"
+  add_index "albums", ["band_id", "name"], :name => "index_albums_on_band_id_and_name", :unique => true
 
   create_table "bands", :force => true do |t|
     t.string   "name",       :null => false
@@ -45,11 +45,13 @@ ActiveRecord::Schema.define(:version => 20131014060258) do
   add_index "tracks", ["album_id", "ord"], :name => "index_tracks_on_album_id_and_ord", :unique => true
 
   create_table "users", :force => true do |t|
-    t.string   "email",           :null => false
-    t.string   "password_digest", :null => false
-    t.string   "session_token",   :null => false
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.string   "email",                               :null => false
+    t.string   "password_digest",                     :null => false
+    t.string   "session_token",                       :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.boolean  "activated",        :default => false
+    t.string   "activation_token"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
