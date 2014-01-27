@@ -6,9 +6,8 @@ class UserMailer < ActionMailer::Base
   #
   #   en.user_mailer.activation_email.subject
   #
-  def activation_email
-    @greeting = "Hi"
-
-    mail to: "to@example.org"
+  def initial_activation_email(user)
+    @user = user
+    mail(to: user.email, subject: "Welcome to Tommy's Cars! Please activate your account.")
   end
 end

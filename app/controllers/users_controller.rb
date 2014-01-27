@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      login_user! @user
-      redirect_to user_url @user
+      UserMailer.activation_email(@user).deliver!
+      redirect_to root_url, notice: "Successfully created your account! Check your inbox for an activation email."
     else
       render :new
     end
@@ -26,6 +26,7 @@ class UsersController < ApplicationController
     # for some reason.
     if params[:activation_token] && @user
       @user.activate!
+      login_user! @user
       redirect_to @user, notice: "Successfully activated your account!"
     else
       raise ActiveRecord::RecordNotFound.new()
