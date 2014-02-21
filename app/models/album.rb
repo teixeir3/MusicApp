@@ -1,6 +1,4 @@
 class Album < ActiveRecord::Base
-  attr_accessible :band_id, :live, :name, :year
-
   belongs_to :band
   has_many :tracks
 
@@ -10,3 +8,4 @@ class Album < ActiveRecord::Base
   validates :name, :uniqueness => { :scope => :band_id }
   validates :year, :numericality => { :minimum => 1900, :maximum => 9000 }
 end
+

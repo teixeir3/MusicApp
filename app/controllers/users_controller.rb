@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def create
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
     if @user.save
       UserMailer.activation_email(@user).deliver!
       redirect_to root_url, notice: "Successfully created your account! Check your inbox for an activation email."
@@ -33,4 +33,9 @@ class UsersController < ApplicationController
     end
   end
 
+
+  private
+  def user_params
+    params.require(:user).permit(:email, :password)
+  end
 end

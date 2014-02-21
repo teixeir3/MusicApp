@@ -12,7 +12,7 @@ class BandsController < ApplicationController
   end
 
   def create
-    @band = Band.new(params[:band])
+    @band = Band.new(band_params)
 
     if @band.save
       redirect_to band_url(@band)
@@ -32,8 +32,13 @@ class BandsController < ApplicationController
 
   def update
     @band = Band.find(params[:id])
-    @band.update_attributes(params[:band])
+    @band.update_attributes(band_params)
 
     redirect_to band_url(@band)
+  end
+
+  private
+  def band_params
+    params.require(:band).permit(:name)
   end
 end

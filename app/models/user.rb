@@ -9,8 +9,6 @@ class ActiveRecord::Base
 end
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :password
-
   before_validation { |user| user.reset_session_token!(false) }
 
   validates(:password_digest,
@@ -23,7 +21,7 @@ class User < ActiveRecord::Base
 
 #  validates(:email, :uniqueness => true)
   def self.generate_session_token
-    self.class.generate_unique_token_for_field(:session_token)
+    self.generate_unique_token_for_field(:session_token)
   end
 
   def self.find_by_credentials(email, secret)
@@ -56,3 +54,4 @@ class User < ActiveRecord::Base
     self.update_attribute(:activated, true)
   end
 end
+

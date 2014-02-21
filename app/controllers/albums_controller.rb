@@ -1,6 +1,6 @@
 class AlbumsController < ApplicationController
   def create
-    @album = Album.new(params[:album])
+    @album = Album.new(album_params)
 
     if @album.save
       redirect_to album_url(@album)
@@ -33,10 +33,15 @@ class AlbumsController < ApplicationController
   def update
     @album = Album.find(params[:id])
 
-    if @album.update_attributes(params[:album])
+    if @album.update_attributes(album_params)
       redirect_to album_url(@album)
     else
       render :edit
     end
+  end
+
+  private
+  def album_params
+    params.require(:album).permit(:band_id, :live, :name, :year)
   end
 end

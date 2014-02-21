@@ -1,6 +1,6 @@
 class TracksController < ApplicationController
   def create
-    @track = Track.new(params[:track])
+    @track = Track.new(track_params)
 
     if @track.save
       redirect_to track_url(@track)
@@ -32,8 +32,13 @@ class TracksController < ApplicationController
 
   def update
     @track = Track.find(params[:id])
-    @track.update_attributes(params[:track])
+    @track.update_attributes(track_params)
 
     redirect_to track_url(@track)
+  end
+
+  private
+  def track_params
+    params.require(:track).permit(:album_id, :bonus, :lyrics, :name, :ord)
   end
 end
