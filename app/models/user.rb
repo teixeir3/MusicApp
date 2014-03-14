@@ -1,13 +1,3 @@
-class ActiveRecord::Base
-  def self.generate_unique_token_for_field(field)
-    begin
-      token = SecureRandom.base64(16)
-    end until !self.exists?(field => token)
-
-    token
-  end
-end
-
 class User < ActiveRecord::Base
   before_validation { |user| user.reset_session_token!(false) }
 
@@ -20,6 +10,9 @@ class User < ActiveRecord::Base
   before_create :set_activation_token
 
 #  validates(:email, :uniqueness => true)
+
+
+# ActiveRecord::Base::generate_unique_token_for_field defined in lib/active_record_extension.rb
   def self.generate_session_token
     self.generate_unique_token_for_field(:session_token)
   end
